@@ -15,6 +15,7 @@ from typing import Dict
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from bot_logic import ShopeeBot
@@ -24,6 +25,15 @@ from bot_logic import ShopeeBot
 # --------------------------------------------------------------------------- #
 
 app = FastAPI(title="Shopee Live Automation Panel")
+
+# CORS 設定 - 允許前端從不同來源連線
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 在生產環境中應該限制為特定域名
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Serve index.html at root and any other static assets from the current folder.
 BASE_DIR = Path(__file__).parent
@@ -101,6 +111,12 @@ def serve_dashboard():
     if not html_path.exists():
         raise HTTPException(status_code=404, detail="index.html not found")
     return FileResponse(str(html_path))
+
+
+@app.get("/health", include_in_schema=False)
+def health_check():
+    """Basic health endpoint for frontend connectivity checks."""
+    return {"ok": True, "status": "healthy"}
 
 
 @app.get("/devices")

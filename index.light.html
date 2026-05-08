@@ -52,7 +52,6 @@
     tbody td{padding:12px;border-bottom:1px solid color-mix(in srgb,var(--border) 30%, white)}
     .badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px}
     .badge.green{background:color-mix(in srgb,#0f9d58 12%, white);color:#0f9d58}
-    .badge.red{background:color-mix(in srgb,#d93025 12%, white);color:#d93025}
     .badge.gray{background:color-mix(in srgb,var(--border) 6%, white);color:var(--muted)}
 
     /* rename form */
@@ -69,13 +68,10 @@
 <body>
   <div class="container">
     <header>
-      <div style="display:flex;align-items:center;gap:10px">
-        <h1>⚙️ Shopee Live 控制面板 — Light</h1>
-        <span id="healthBadge" class="badge gray">後端連線檢查中</span>
-      </div>
+      <h1>⚙️ Shopee Live 控制面板 — Light</h1>
       <div class="actions">
         <button class="btn">⤴︎ 匯出日誌</button>
-        <button id="refreshBtn" class="btn primary">🔄 重新整理裝置</button>
+        <button class="btn primary">🔄 重新整理裝置</button>
       </div>
     </header>
 
@@ -108,7 +104,7 @@
         </div>
       </section>
 
-      <section id="renameSection" class="card" style="display:none">
+      <section class="card">
         <h2>更新裝置名稱</h2>
         <div class="row" style="margin-bottom:8px">
           <input placeholder="ADB ID（例：70f5e12）" />
@@ -129,30 +125,5 @@
 
     <footer style="margin-top:18px;text-align:center;color:var(--muted);font-size:13px">Wireframe · 現為預覽樣式</footer>
   </div>
-  <script>
-    const healthBadge = document.getElementById('healthBadge');
-
-    function setHealthStatus(connected) {
-      if (!healthBadge) return;
-      healthBadge.textContent = connected ? '後端已連線' : '後端斷線';
-      healthBadge.className = `badge ${connected ? 'green' : 'red'}`;
-    }
-
-    async function checkBackendHealth() {
-      try {
-        const res = await fetch('/health', { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        setHealthStatus(data.ok === true);
-      } catch (error) {
-        console.error('Health check failed', error);
-        setHealthStatus(false);
-      }
-    }
-
-    document.getElementById('refreshBtn')?.addEventListener('click', checkBackendHealth);
-    checkBackendHealth();
-    setInterval(checkBackendHealth, 10000);
-  </script>
 </body>
 </html>

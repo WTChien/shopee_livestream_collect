@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "kind": "html",
+  "title": "Shopee Live — Light (updated)",
+  "entry": "shopee-live-light.html",
+  "renderer": "html",
+  "status": "complete",
+  "exports": [
+    "html",
+    "pdf",
+    "zip"
+  ],
+  "createdAt": "2026-05-08T04:50:57.237Z",
+  "updatedAt": "2026-05-08T04:50:57.249Z",
+  "metadata": {
+    "identifier": "shopee-live-light",
+    "artifactType": "text/html",
+    "inferred": false
+  }
+}
