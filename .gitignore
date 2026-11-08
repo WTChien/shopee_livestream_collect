@@ -1,0 +1,9 @@
+.venv/
+.uv-cache/
+.easyocr/
+.ocr-test/
+data/
+line.env
+tests/.tmp/
+__pycache__/
+*.py[cod]

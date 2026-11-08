@@ -1,0 +1,38 @@
+{
+  "serial": "R58M35DLVVZ",
+  "screen_size": [
+    1080,
+    2280
+  ],
+  "reward_box": [
+    761,
+    353,
+    1059,
+    891
+  ],
+  "coin_center": [
+    815,
+    719
+  ],
+  "buttons": {
+    "modal_close": [
+      545,
+      1731
+    ],
+    "home_live_entry": [
+      532,
+      2087
+    ],
+    "live_tab": [
+      605,
+      161
+    ]
+  },
+  "source": "manual",
+  "blue_box": [
+    761,
+    353,
+    1059,
+    891
+  ]
+}
